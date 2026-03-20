@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* The Outfit font is self-hosted via next/font in app/layout.tsx
+   and exposed as the --font-outfit CSS variable. */
+
+:root {
+  --teams-accent: #7f85f5;
+  --teams-accent-glow: #6a6dff;
+}
+
+::selection {
+  background: rgba(127, 133, 245, 0.4);
+}
+
+body {
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  background: #0d0d0d;
+  color: #e8e8e8;
+}
+
+/* Pill hover effects (for the Teams mockup) */
+.teams-pill:hover {
+  border-color: rgba(106, 109, 255, 0.9) !important;
+  box-shadow: 0 0 0 1px rgba(106, 109, 255, 0.35) inset,
+    0 0 18px rgba(106, 109, 255, 0.3) !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Button base for action buttons */
+.action-btn {
+  @apply flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition-all duration-200;
+}
+
+.action-btn-primary {
+  @apply action-btn text-white;
+  background: linear-gradient(135deg, #6a6dff, #8b5cf6);
+  box-shadow: 0 4px 20px rgba(106, 109, 255, 0.3);
+}
+
+.action-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(106, 109, 255, 0.4);
+}
+
+.action-btn-secondary {
+  @apply action-btn text-gray-300;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.action-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(127, 133, 245, 0.3);
+}
+
+/* Gallery card */
+.gallery-card {
+  @apply rounded-2xl p-5 transition-all duration-200;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.gallery-card:hover {
+  border-color: rgba(127, 133, 245, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Step card */
+.step-card {
+  @apply rounded-2xl p-6 transition-all duration-200 cursor-default;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.step-card:hover {
+  background: rgba(127, 133, 245, 0.05);
+  border-color: rgba(127, 133, 245, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Dropdown */
+.dropdown-menu {
+  @apply absolute top-[calc(100%+6px)] left-0 z-50 min-w-[200px] overflow-hidden rounded-xl;
+  background: #2a2a2a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  animation: fadeSlideIn 200ms ease;
+}
+
+/* Editable message placeholder */
+.teams-composer-input:empty:not(:focus)::before {
+  content: attr(data-placeholder);
+  color: #a9a9a9;
+  pointer-events: none;
+}
+
+/* Subtle hover on editable fields */
+.teams-editable-field:hover,
+.teams-composer-input:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+.teams-editable-field:focus,
+.teams-composer-input:focus {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes confettiFly {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) rotate(720deg);
+    opacity: 0;
+  }
+}
